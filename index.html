@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ========================================
+       ページタイトル（タブに表示される名前）
+       ======================================== -->
+  <title>うちの子のページ</title>
+
+  <style>
+    /* ===== リセット & 基本設定 ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      color: #333;
+      background: #fffdf9;
+    }
+
+    /* ===== ナビゲーション ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 40px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #c0622f;
+      /* ロゴテキストをここで変更 */
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: #555;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #c0622f; }
+
+    /* ===== ヒーローセクション（メイン写真） ===== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 500px;
+      overflow: hidden;
+    }
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%; /* 写真の表示位置を調整 (上下: top/center/bottom) */
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.05) 0%,
+        rgba(0,0,0,0.45) 100%
+      );
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 60px 60px 80px;
+    }
+
+    /* ===== ヒーローのテキスト ===== */
+    .hero-title {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+      /* メインタイトルのスタイル */
+    }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      color: rgba(255,255,255,0.9);
+      font-weight: 400;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+      /* サブタイトルのスタイル */
+    }
+
+    /* ===== コンテンツセクション ===== */
+    section {
+      padding: 80px 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #c0622f;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid #f5d6c0;
+    }
+    .section-text {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: #555;
+    }
+
+    /* ===== カードグリッド ===== */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+    }
+    .card-icon { font-size: 2.4rem; margin-bottom: 12px; }
+    .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: #333; }
+    .card-body { font-size: 0.95rem; line-height: 1.7; color: #666; }
+
+    /* ===== フッター ===== */
+    footer {
+      text-align: center;
+      padding: 32px;
+      background: #3a2a1e;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================
+       ナビゲーションバー
+       ======================================== -->
+  <nav>
+    <span class="nav-logo">🐾 うちの子</span><!-- ロゴ文字を変更 -->
+    <ul class="nav-links">
+      <li><a href="#about">プロフィール</a></li><!-- メニュー項目 -->
+      <li><a href="#gallery">ギャラリー</a></li>
+      <li><a href="#contact">お問い合わせ</a></li>
+    </ul>
+  </nav>
+
+  <!-- ========================================
+       ヒーロー（メイン写真エリア）
+       写真ファイル: images/hero.jpg に置いてください
+       ======================================== -->
+  <section class="hero">
+    <img src="images/hero.jpg" alt="海辺でお散歩中のポメラニアン" />
+    <div class="hero-overlay">
+      <!-- ↓ メインタイトルを変更 -->
+      <h1 class="hero-title">晴れた日は<br>お散歩日和</h1>
+      <!-- ↓ サブタイトルを変更 -->
+      <p class="hero-subtitle">海を眺めながら、今日もにっこり。</p>
+    </div>
+  </section>
+
+  <!-- ========================================
+       プロフィールセクション
+       ======================================== -->
+  <section id="about">
+    <h2 class="section-title">プロフィール</h2>
+    <!-- ↓ テキストを自由に変更してください -->
+    <p class="section-text">
+      はじめまして！ポメラニアンの〇〇です。<br>
+      お散歩が大好きで、海の近くをお気に入りのコースにしています。<br>
+      いつでもにっこりスマイルで、みんなを笑顔にするのが得意です。
+    </p>
+
+    <!-- ===== カード3枚 ===== -->
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🎂</div>
+        <div class="card-title">誕生日</div>
+        <!-- ↓ 内容を変更 -->
+        <div class="card-body">〇〇年〇月〇日生まれ<br>〇歳</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">❤️</div>
+        <div class="card-title">好きなこと</div>
+        <!-- ↓ 内容を変更 -->
+        <div class="card-body">お散歩・おやつ・日向ぼっこ</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌊</div>
+        <div class="card-title">お気に入りの場所</div>
+        <!-- ↓ 内容を変更 -->
+        <div class="card-body">海が見える公園</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       ギャラリーセクション（追加写真用）
+       ======================================== -->
+  <section id="gallery" style="background:#fff8f4; border-radius:24px;">
+    <h2 class="section-title">ギャラリー</h2>
+    <p class="section-text">
+      📸 ここに写真を追加できます。<br>
+      <code>images/</code> フォルダに画像を入れて、下の img タグのパスを変更してください。
+    </p>
+    <!-- 写真を追加するときはここに img タグを並べてください -->
+    <!--
+    <div class="cards" style="margin-top:32px;">
+      <img src="images/photo1.jpg" style="width:100%;border-radius:12px;" />
+      <img src="images/photo2.jpg" style="width:100%;border-radius:12px;" />
+      <img src="images/photo3.jpg" style="width:100%;border-radius:12px;" />
+    </div>
+    -->
+  </section>
+
+  <!-- ========================================
+       お問い合わせセクション
+       ======================================== -->
+  <section id="contact">
+    <h2 class="section-title">お問い合わせ</h2>
+    <!-- ↓ テキストや連絡先を変更 -->
+    <p class="section-text">
+      ご連絡はこちらからどうぞ。<br>
+      📧 example@example.com
+    </p>
+  </section>
+
+  <!-- ========================================
+       フッター
+       ======================================== -->
+  <footer>
+    <!-- ↓ コピーライトなどを変更 -->
+    <p>&copy; 2026 うちの子のページ. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
